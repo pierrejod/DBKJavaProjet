@@ -53,6 +53,7 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
       bt_ajout = new javax.swing.JButton();
       bt_modi = new javax.swing.JButton();
       bt_sup = new javax.swing.JButton();
+      bt_prix = new javax.swing.JButton();
       jPanel3 = new javax.swing.JPanel();
       jScrollPane1 = new javax.swing.JScrollPane();
       table_inv = new javax.swing.JTable();
@@ -120,8 +121,7 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
               .addGap(18, 18, 18))
       );
 
-      bt_ajout.setText("Ajouter");
-      
+     bt_ajout.setText("Ajouter");
      bt_ajout.addActionListener(new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
               btajoutActionPerformed(evt);
@@ -139,6 +139,13 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
       bt_sup.addActionListener(new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
               btsupActionPerformed(evt);
+          }
+      });
+      
+      bt_prix.setText("Prix TTC");
+      bt_prix.addActionListener(new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+              btprixActionPerformed(evt);
           }
       });
 
@@ -190,6 +197,7 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
                       .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                           .addComponent(bt_modi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                           .addComponent(bt_sup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                          .addComponent(bt_prix, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                           .addComponent(bt_ajout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
               .addContainerGap(14, Short.MAX_VALUE))
       );
@@ -206,7 +214,9 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
                       .addGap(15, 15, 15)
                       .addComponent(bt_modi)
                       .addGap(18, 18, 18)
-                      .addComponent(bt_sup)))
+                      .addComponent(bt_sup)
+                      .addGap(18, 18, 18)
+                      .addComponent(bt_prix)))
               .addGap(29, 29, 29)
               .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
@@ -262,6 +272,12 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
           load();
       }
   }
+  private void btprixActionPerformed(java.awt.event.ActionEvent evt) {
+	  
+	  JOptionPane.showMessageDialog(this, "Test gros nul");
+      load();
+      clear();
+    }
   
   //Déclaration des différents composants
   
@@ -269,6 +285,7 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
   private javax.swing.JButton bt_ajout;
   private javax.swing.JButton bt_modi;
   private javax.swing.JButton bt_sup;
+  private javax.swing.JButton bt_prix;
   private javax.swing.JLabel labelnom;
   private javax.swing.JLabel labelprix;
   private javax.swing.JLabel labelref;
