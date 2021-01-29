@@ -4,26 +4,27 @@ package main;
 //Importation des différentes fonctionnalités Swing et des données des autres .java
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import classe.Produit;
+
+import classe.Article;
 import Tableau.Tableau;
 
 public class FenetreSaisie extends javax.swing.JInternalFrame {
 
-  Tableau ps;
+  Tableau articles;
   DefaultTableModel model;
   static int id;
 
 
   public FenetreSaisie() {
       initComponents();
-      ps = new Tableau();
+      articles = new Tableau();
       model = (DefaultTableModel) table_inv.getModel();
   }
 
   void load() {
       model.setRowCount(0);
-      for (Produit p : ps.findAll()) {
-          model.addRow(new Object[]{p.getId(), p.getNom(), p.getPrix(),p.getStock(), p.getType()});
+      for (Article a : articles.findAll()) {
+          model.addRow(new Object[]{a.getId(), a.getIntitule(), a.getPrixHT(),a.getQuantiteEnStock(), a.getReference()});
       }
   }
 
@@ -32,8 +33,8 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
       champnom.setText("");
       champprix.setText("");
       champstock.setText("");
-      bt_fruit.setSelected(false);
-      bt_legu.setSelected(false);
+      champref.setText("");
+
   }
 
   private void initComponents() {
@@ -43,13 +44,12 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
       jPanel2 = new javax.swing.JPanel();
       labelnom = new javax.swing.JLabel();
       labelprix = new javax.swing.JLabel();
-      labeltype = new javax.swing.JLabel();
+      labelref = new javax.swing.JLabel();
       labelstock = new javax.swing.JLabel();
       champnom = new javax.swing.JTextField();
       champprix = new javax.swing.JTextField();
       champstock = new javax.swing.JTextField();
-      bt_legu = new javax.swing.JRadioButton();
-      bt_fruit = new javax.swing.JRadioButton();
+      champref = new javax.swing.JTextField();
       bt_ajout = new javax.swing.JButton();
       bt_modi = new javax.swing.JButton();
       bt_sup = new javax.swing.JButton();
@@ -72,20 +72,10 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
 
       labelprix.setText("Prix :");
 
-      labeltype.setText("Type :");
+      labelref.setText("Reference :");
       
       labelstock.setText("Stock");
       
-      
-
-
-      bt_legu.setBackground(new java.awt.Color(255,255,255));
-      buttonGroup1.add(bt_fruit);
-      bt_fruit.setText("Fruit");
-
-      bt_legu.setBackground(new java.awt.Color(255, 255, 255));
-      buttonGroup1.add(bt_legu);
-      bt_legu.setText("Légume");
 
 
       javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -104,12 +94,11 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
               .addGap(18, 18, 18)
               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                   .addGroup(jPanel2Layout.createSequentialGroup()
-                      .addComponent(labeltype)
+                      .addComponent(labelref)
                       .addComponent(labelstock)
                       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                      .addComponent(bt_fruit)
                       .addComponent(champstock, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                      .addComponent(bt_legu)
+                      .addComponent(champref, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                   	.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE))
                   .addGroup(jPanel2Layout.createSequentialGroup()
                        ))));
@@ -121,17 +110,15 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
               .addContainerGap()
               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                   .addComponent(labelnom)
-                  .addComponent(labeltype)
+                  .addComponent(labelref)
                   .addComponent(champnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(bt_fruit)
-                  .addComponent(bt_legu))
-              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,20, Short.MAX_VALUE)
+                  .addComponent(champref, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                   .addComponent(labelprix)
                   .addComponent(labelstock)
                   .addComponent(champprix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addComponent(champstock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-      )));
+      ))));
 
       bt_ajout.setText("Ajouter");
       
@@ -163,7 +150,7 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
 
           },
           new String [] {
-              "ID", "Nom","Prix", "Stock", "Type"
+              "ID", "Intitulé","PrixHT", "Stock", "Reference"
           }
       ));
       table_inv.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -238,17 +225,12 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
       pack();
   }
 
-  private void btajoutActionPerformed(java.awt.event.ActionEvent evt) {;
-      String type = "";
-
-      if (bt_fruit.isSelected()) {
-          type = "Fruit";
-      }
-      if (bt_legu.isSelected()) {
-          type = "Légume";
-      }
-      
-      if (ps.create(new Produit(champnom.getText(), champprix.getText(),champstock.getText(), type))) {
+  private void btajoutActionPerformed(java.awt.event.ActionEvent evt) {
+  
+  	float prixHT = Float.parseFloat(champprix.getText());
+  	long ref = Long.parseLong(champref.getText());
+  	int stock = Integer.parseInt(champstock.getText());
+      if (articles.create(new Article(champnom.getText(), prixHT,ref, stock))) {
           JOptionPane.showMessageDialog(this, "Ajout effectué");
           clear();
           load();
@@ -260,26 +242,21 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
       id = Integer.parseInt(model.getValueAt(table_inv.getSelectedRow(), 0).toString());
       champnom.setText(model.getValueAt(table_inv.getSelectedRow(), 1).toString());
       champprix.setText(model.getValueAt(table_inv.getSelectedRow(), 2).toString());
-      champstock.setText(model.getValueAt(table_inv.getSelectedRow(), 3).toString());
-      
+      champref.setText(model.getValueAt(table_inv.getSelectedRow(), 3).toString());
+      champstock.setText(model.getValueAt(table_inv.getSelectedRow(), 4).toString());
   }
 
   private void btmodiActionPerformed(java.awt.event.ActionEvent evt) {
-      ps.delete(ps.findById(id));
+      articles.delete(articles.findById(id));
       load();
       clear();
   }
 
   private void btsupActionPerformed(java.awt.event.ActionEvent evt) {
-
-      String type = "";
-      if (bt_fruit.isSelected()) {
-          type = "Fruit";
-      }
-      if (bt_legu.isSelected()) {
-          type = "Légume";
-      }
-      if (ps.update(new Produit(id,champnom.getText(), champprix.getText(),champstock.getText(), type))) {
+	  float prixHT = Float.parseFloat(champprix.getText());
+	  long ref = Long.parseLong(champref.getText());
+	  int stock = Integer.parseInt(champstock.getText());
+      if (articles.update(new Article(id,champnom.getText(),  prixHT,ref, stock))) {
           JOptionPane.showMessageDialog(this, "Modification effectuée");
           clear();
           load();
@@ -294,18 +271,17 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
   private javax.swing.JButton bt_sup;
   private javax.swing.JLabel labelnom;
   private javax.swing.JLabel labelprix;
-  private javax.swing.JLabel labeltype;
+  private javax.swing.JLabel labelref;
   private javax.swing.JLabel labelstock;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JPanel jPanel2;
   private javax.swing.JPanel jPanel3;
-  private javax.swing.JRadioButton bt_fruit;
-  private javax.swing.JRadioButton bt_legu;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JTable table_inv;
   private javax.swing.JTextField champnom;
   private javax.swing.JTextField champprix;
   private javax.swing.JTextField champstock;
+  private javax.swing.JTextField champref;
   
 }
 

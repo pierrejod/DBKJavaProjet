@@ -2,33 +2,33 @@ package Tableau;
 
 import java.util.ArrayList;
 import java.util.List;
-import classe.Produit;
+import classe.Article;
 import Interface.Inter;
 
 
-public class Tableau implements Inter<Produit> {
+public class Tableau implements Inter<Article> {
 
-    private List<Produit> produits;
+    private List<Article> articles;
 
     public Tableau() {
-        produits = new ArrayList<>();
+        articles = new ArrayList<>();
     }
 
     @Override
-    public boolean create(Produit o) {
-        return produits.add(o);
+    public boolean create(Article o) {
+        return articles.add(o);
     }
 
     @Override
-    public boolean delete(Produit o) {
-        return produits.remove(o);
+    public boolean delete(Article o) {
+        return articles.remove(o);
     }
 
     @Override
-    public boolean update(Produit o) {
-        for (int i = 0; i < produits.size(); i++) {
-            if (produits.get(i).getId() == o.getId()) {
-                produits.set(i, o);
+    public boolean update(Article o) {
+        for (int i = 0; i < articles.size(); i++) {
+            if (articles.get(i).getId() == o.getId()) {
+                articles.set(i, o);
                 return true;
             }
         }
@@ -36,15 +36,15 @@ public class Tableau implements Inter<Produit> {
     }
 
     @Override
-    public List<Produit> findAll() {
-        return produits;
+    public List<Article> findAll() {
+        return articles;
     }
 
     @Override
-    public Produit findById(int id) {
-        for (Produit p : produits) {
-            if (p.getId() == id) {
-                return p;
+    public Article findById(int id) {
+        for (Article a : articles) {
+            if (a.getId() == id) {
+                return a;
             }
         }
         return null;
