@@ -74,7 +74,7 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
 
       labelref.setText("Reference :");
       
-      labelstock.setText("Stock");
+      labelstock.setText("Stock : ");
       
 
 
@@ -89,21 +89,19 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
                   .addComponent(labelnom))
               .addGap(16, 16, 16)
               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                  .addComponent(champnom, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                  .addComponent(champnom, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                   .addComponent(champprix))
               .addGap(18, 18, 18)
               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                   .addGroup(jPanel2Layout.createSequentialGroup()
                       .addComponent(labelref)
-                      .addComponent(labelstock)
                       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                      .addComponent(champstock, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                      .addComponent(champref, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                  	.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE))
+                      .addComponent(champref,javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                   .addGroup(jPanel2Layout.createSequentialGroup()
-                       ))));
-      
-      
+                      .addComponent(labelstock))
+                      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                      .addComponent(champstock,javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))))
+      );
       jPanel2Layout.setVerticalGroup(
           jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(jPanel2Layout.createSequentialGroup()
@@ -112,13 +110,15 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
                   .addComponent(labelnom)
                   .addComponent(labelref)
                   .addComponent(champnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(champref, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                  .addComponent(champref))
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+              .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                   .addComponent(labelprix)
-                  .addComponent(labelstock)
                   .addComponent(champprix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(champstock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-      ))));
+                  .addComponent(labelstock)
+                  .addComponent(champstock))
+              .addGap(18, 18, 18))
+      );
 
       bt_ajout.setText("Ajouter");
       

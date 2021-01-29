@@ -68,9 +68,4 @@ public class Article {
 		this.quantiteEnStock = quantiteEnStock;
 	}
     
-    
-
-	
-	
-	
 }
