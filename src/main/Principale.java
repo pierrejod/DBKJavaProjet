@@ -25,6 +25,7 @@ public class Principale extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
+        addMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,9 +40,15 @@ public class Principale extends javax.swing.JFrame {
             }
         });
         fileMenu.add(openMenuItem);
-
-
         
+        addMenuItem.setMnemonic('x');
+        addMenuItem.setText("Aller en course");
+        addMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(addMenuItem);  
 
         menuBar.add(fileMenu);
 
@@ -67,6 +74,13 @@ public class Principale extends javax.swing.JFrame {
         FenetreSaisie fi = new FenetreSaisie();
         desktopPane.add(fi);
         fi.setVisible(true);
+    }
+    
+    private void addMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
+        
+        Fenetrecourse fc = new Fenetrecourse();
+        desktopPane.add(fc);
+        fc.setVisible(true);
     }
 
 
@@ -103,6 +117,7 @@ public class Principale extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
+    private javax.swing.JMenuItem addMenuItem;
 
 
 }
