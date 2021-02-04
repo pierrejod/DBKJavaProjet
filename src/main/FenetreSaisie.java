@@ -274,7 +274,8 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
   }
   private void btprixActionPerformed(java.awt.event.ActionEvent evt) {
 	  
-	  JOptionPane.showMessageDialog(this, "Test gros nul");
+	  float prixHT = Float.parseFloat(champprix.getText());
+	  JOptionPane.showMessageDialog(this, (prixHT*1.1196)/100);
       load();
       clear();
     }
