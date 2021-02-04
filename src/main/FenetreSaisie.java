@@ -275,9 +275,14 @@ public class FenetreSaisie extends javax.swing.JInternalFrame {
   private void btprixActionPerformed(java.awt.event.ActionEvent evt) {
 	  
 	  float prixHT = Float.parseFloat(champprix.getText());
-	  JOptionPane.showMessageDialog(this, (prixHT*1.1196));
+	  if (champprix.getText().isBlank()) {
+		  JOptionPane.showMessageDialog(this,"Aucun prix indiqué");
+	  }
+	  else {
+		  JOptionPane.showMessageDialog(this,(prixHT*1.196));  
+	  }
       load();
-      clear();
+      
     }
   
   //Déclaration des différents composants
