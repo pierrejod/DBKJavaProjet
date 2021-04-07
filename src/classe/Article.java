@@ -1,7 +1,7 @@
 package classe;
 
  //Initialisation de la classe et le constructeur Produit
-
+ //Modif de classe tout clean
 public class Article {
 
     private int id;
